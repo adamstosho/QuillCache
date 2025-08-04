@@ -1,0 +1,137 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient definitions -->
+    <linearGradient id="quillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5B3C88;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F97316;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="inkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F2937;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#374151;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Filter for glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle with subtle animation -->
+  <circle cx="100" cy="100" r="90" fill="url(#quillGradient)" opacity="0.1">
+    <animate attributeName="r" values="90;95;90" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Book -->
+  <g id="book">
+    <!-- Book spine -->
+    <rect x="85" y="60" width="30" height="80" fill="url(#bookGradient)" rx="2">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Book pages -->
+    <rect x="87" y="62" width="26" height="76" fill="white" rx="1">
+      <animate attributeName="opacity" values="0.9;1;0.9" dur="2.5s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Book lines (text) -->
+    <g stroke="#E5E7EB" stroke-width="1" opacity="0.6">
+      <line x1="90" y1="70" x2="110" y2="70">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite"/>
+      </line>
+      <line x1="90" y1="75" x2="108" y2="75">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite" begin="0.2s"/>
+      </line>
+      <line x1="90" y1="80" x2="106" y2="80">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite" begin="0.4s"/>
+      </line>
+      <line x1="90" y1="85" x2="104" y2="85">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite" begin="0.6s"/>
+      </line>
+      <line x1="90" y1="90" x2="102" y2="90">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite" begin="0.8s"/>
+      </line>
+      <line x1="90" y1="95" x2="100" y2="95">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite" begin="1s"/>
+      </line>
+      <line x1="90" y1="100" x2="98" y2="100">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite" begin="1.2s"/>
+      </line>
+      <line x1="90" y1="105" x2="96" y2="105">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite" begin="1.4s"/>
+      </line>
+      <line x1="90" y1="110" x2="94" y2="110">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite" begin="1.6s"/>
+      </line>
+      <line x1="90" y1="115" x2="92" y2="115">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite" begin="1.8s"/>
+      </line>
+    </g>
+  </g>
+  
+  <!-- Quill Pen -->
+  <g id="quill">
+    <!-- Quill shaft -->
+    <path d="M 120 80 Q 140 60 160 70 Q 150 90 130 100 L 120 80" fill="url(#quillGradient)" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Quill feather -->
+    <path d="M 120 80 Q 110 70 100 75 Q 105 85 115 90 L 120 80" fill="#E5E7EB" opacity="0.8">
+      <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Quill tip -->
+    <path d="M 130 100 L 135 105 L 130 110 L 125 105 Z" fill="url(#inkGradient)">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Ink drops -->
+  <g id="ink-drops">
+    <circle cx="125" cy="115" r="2" fill="url(#inkGradient)" opacity="0.8">
+      <animate attributeName="r" values="2;3;2" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="128" cy="118" r="1.5" fill="url(#inkGradient)" opacity="0.6">
+      <animate attributeName="r" values="1.5;2.5;1.5" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Floating particles -->
+  <g id="particles">
+    <circle cx="60" cy="50" r="1" fill="#8B5CF6" opacity="0.6">
+      <animate attributeName="cy" values="50;40;50" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="140" cy="40" r="0.8" fill="#F59E0B" opacity="0.5">
+      <animate attributeName="cy" values="40;30;40" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="150" r="1.2" fill="#5B3C88" opacity="0.4">
+      <animate attributeName="cy" values="150;140;150" dur="3.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="150" cy="160" r="0.9" fill="#F97316" opacity="0.5">
+      <animate attributeName="cy" values="160;150;160" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Text "QuillCache" -->
+  <text x="100" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#5B3C88">
+    <tspan x="100" dy="0">Quill</tspan>
+    <tspan fill="#8B5CF6">Cache</tspan>
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </text>
+</svg> 

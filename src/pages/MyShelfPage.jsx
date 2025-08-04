@@ -7,7 +7,7 @@ import BookCard from "../components/BookCard"
 import QRModal from "../components/QRModal"
 import BookDetailsModal from "../components/BookDetailsModal"
 import ConfirmModal from "../components/ConfirmModal"
-import { Filter, SortAsc, SortDesc, QrCode, Search, BookOpen, Plus, Library } from "lucide-react"
+import { Filter, SortAsc, SortDesc, QrCode, Search, BookOpen, Plus, Library, TrendingUp, Users } from "lucide-react"
 
 export default function MyShelfPage() {
   const { books, loading, error, updateExistingBook, deleteExistingBook } = useIndexedDB()
@@ -78,10 +78,11 @@ export default function MyShelfPage() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)]">
-        <div className="glass-effect rounded-2xl p-8 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-lg text-gray-700 font-medium">Loading your shelf...</p>
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-4">
+        <div className="glass rounded-2xl lg:rounded-3xl p-8 lg:p-12 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 lg:h-16 lg:w-16 border-b-2 border-primary-600 mx-auto mb-4 lg:mb-6"></div>
+          <h3 className="text-lg lg:text-xl font-heading font-semibold text-neutral-800 mb-2">Loading your shelf...</h3>
+          <p className="text-neutral-600 text-sm lg:text-base">Please wait while we fetch your books</p>
         </div>
       </div>
     )
@@ -89,70 +90,80 @@ export default function MyShelfPage() {
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)]">
-        <div className="glass-effect rounded-2xl p-8 text-center">
-          <p className="text-lg text-destructive font-medium">Error: {error}</p>
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-4">
+        <div className="glass rounded-2xl lg:rounded-3xl p-8 lg:p-12 text-center">
+          <div className="w-12 h-12 lg:w-16 lg:h-16 bg-error-100 rounded-full flex items-center justify-center mx-auto mb-4 lg:mb-6">
+            <BookOpen className="w-6 h-6 lg:w-8 lg:h-8 text-error-600" />
+          </div>
+          <h3 className="text-lg lg:text-xl font-heading font-semibold text-neutral-800 mb-2">Error Loading Shelf</h3>
+          <p className="text-error-600 mb-4 text-sm lg:text-base">{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="btn-primary btn-md"
+          >
+            Try Again
+          </button>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-4 space-y-8">
+    <div className="container-wide space-y-6 lg:space-y-8 px-4">
       {/* Header */}
       <div className="text-center fade-in">
-        <h1 className="text-4xl font-heading font-bold text-gradient mb-4">My Book Shelf</h1>
-        <p className="text-gray-600 text-lg">Manage and organize your personal library</p>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-gradient-primary mb-3 lg:mb-4">My Book Shelf</h1>
+        <p className="text-base lg:text-lg text-neutral-600">Manage and organize your personal library</p>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 slide-up">
-        <div className="glass-effect rounded-2xl p-6 text-center">
-          <div className="w-12 h-12 bg-gradient-to-br from-primary to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-glow">
-            <Library className="w-6 h-6 text-white" />
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 slide-up">
+        <div className="glass rounded-xl lg:rounded-2xl p-4 lg:p-6 text-center">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-3 lg:mb-4 shadow-glow-primary">
+            <Library className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-1">{books.length}</h3>
-          <p className="text-gray-600">Total Books</p>
+          <h3 className="text-2xl lg:text-3xl font-bold text-neutral-800 mb-1">{books.length}</h3>
+          <p className="text-neutral-600 font-medium text-sm lg:text-base">Total Books</p>
         </div>
-        <div className="glass-effect rounded-2xl p-6 text-center">
-          <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-glow">
-            <BookOpen className="w-6 h-6 text-white" />
+        <div className="glass rounded-xl lg:rounded-2xl p-4 lg:p-6 text-center">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-success-500 to-success-600 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-3 lg:mb-4 shadow-glow">
+            <BookOpen className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-1">{availableBooks}</h3>
-          <p className="text-gray-600">Available</p>
+          <h3 className="text-2xl lg:text-3xl font-bold text-neutral-800 mb-1">{availableBooks}</h3>
+          <p className="text-neutral-600 font-medium text-sm lg:text-base">Available</p>
         </div>
-        <div className="glass-effect rounded-2xl p-6 text-center">
-          <div className="w-12 h-12 bg-gradient-to-br from-secondary to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-glow">
-            <BookOpen className="w-6 h-6 text-white" />
+        <div className="glass rounded-xl lg:rounded-2xl p-4 lg:p-6 text-center sm:col-span-2 lg:col-span-1">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-secondary-500 to-secondary-600 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-3 lg:mb-4 shadow-glow-secondary">
+            <Users className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-1">{borrowedBooks}</h3>
-          <p className="text-gray-600">Borrowed</p>
+          <h3 className="text-2xl lg:text-3xl font-bold text-neutral-800 mb-1">{borrowedBooks}</h3>
+          <p className="text-neutral-600 font-medium text-sm lg:text-base">Borrowed</p>
         </div>
       </div>
 
       {/* Controls */}
-      <div className="glass-effect rounded-2xl p-6 slide-up" style={{ animationDelay: '0.1s' }}>
-        <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-          <div className="flex flex-col sm:flex-row gap-4 flex-1">
+      <div className="glass rounded-xl lg:rounded-2xl p-4 lg:p-6 slide-up" style={{ animationDelay: '0.1s' }}>
+        <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:gap-6 lg:items-center lg:justify-between">
+          <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:gap-4 lg:flex-1">
             {/* Search */}
-            <div className="flex items-center space-x-2 flex-1 max-w-md">
-              <Search className="w-5 h-5 text-primary" />
+            <div className="flex items-center space-x-3 flex-1 max-w-md">
+              <Search className="w-5 h-5 text-primary-600" />
               <input
                 type="text"
                 placeholder="Search by title or author..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="input-field flex-1"
+                className="input flex-1"
               />
             </div>
 
             {/* Filter */}
-            <div className="flex items-center space-x-2">
-              <Filter className="w-5 h-5 text-primary" />
+            <div className="flex items-center space-x-3">
+              <Filter className="w-5 h-5 text-primary-600" />
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="input-field min-w-[140px]"
+                className="input min-w-[140px]"
               >
                 <option value="all">All Statuses</option>
                 <option value="available">Available</option>
@@ -161,23 +172,23 @@ export default function MyShelfPage() {
             </div>
 
             {/* Sort */}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               {sortOrder === "asc" ? (
-                <SortAsc className="w-5 h-5 text-primary" />
+                <SortAsc className="w-5 h-5 text-primary-600" />
               ) : (
-                <SortDesc className="w-5 h-5 text-primary" />
+                <SortDesc className="w-5 h-5 text-primary-600" />
               )}
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="input-field min-w-[120px]"
+                className="input min-w-[120px]"
               >
                 <option value="title">Title</option>
                 <option value="author">Author</option>
               </select>
               <button
                 onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-                className="p-2 border border-gray-200 rounded-lg bg-white/50 hover:bg-white/80 transition-all duration-200"
+                className="p-2 border border-neutral-200 rounded-lg lg:rounded-xl bg-white/50 hover:bg-white/80 transition-all duration-200"
               >
                 {sortOrder === "asc" ? <SortAsc className="w-5 h-5" /> : <SortDesc className="w-5 h-5" />}
               </button>
@@ -187,7 +198,7 @@ export default function MyShelfPage() {
           {/* Share Button */}
           <button
             onClick={() => setIsQRModalOpen(true)}
-            className="btn-accent flex items-center space-x-2"
+            className="btn-accent btn-md flex items-center space-x-2 w-full lg:w-auto justify-center"
           >
             <QrCode className="w-5 h-5" />
             <span>Share Shelf</span>
@@ -197,24 +208,24 @@ export default function MyShelfPage() {
 
       {/* Books Grid */}
       {filteredAndSortedBooks.length === 0 ? (
-        <div className="glass-effect rounded-2xl p-12 text-center slide-up" style={{ animationDelay: '0.2s' }}>
-          <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <BookOpen className="w-10 h-10 text-gray-400" />
+        <div className="glass rounded-2xl lg:rounded-3xl p-8 lg:p-16 text-center slide-up" style={{ animationDelay: '0.2s' }}>
+          <div className="w-16 h-16 lg:w-24 lg:h-24 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-6 lg:mb-8">
+            <BookOpen className="w-8 h-8 lg:w-12 lg:h-12 text-neutral-400" />
           </div>
-          <h3 className="text-2xl font-heading font-semibold text-gray-800 mb-4">Your shelf is empty!</h3>
-          <p className="text-gray-600 mb-6 max-w-md mx-auto">
+          <h3 className="text-2xl lg:text-3xl font-heading font-semibold text-neutral-800 mb-3 lg:mb-4">Your shelf is empty!</h3>
+          <p className="text-neutral-600 mb-6 lg:mb-8 max-w-md mx-auto text-base lg:text-lg">
             Start building your personal library by adding your first book to the collection.
           </p>
           <Link
             to="/add-book"
-            className="btn-primary inline-flex items-center space-x-2"
+            className="btn-primary btn-md lg:btn-lg inline-flex items-center space-x-2"
           >
             <Plus className="w-5 h-5" />
             <span>Add Your First Book</span>
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
           {filteredAndSortedBooks.map((book, index) => (
             <div key={book.id} style={{ animationDelay: `${0.1 + index * 0.05}s` }}>
               <BookCard

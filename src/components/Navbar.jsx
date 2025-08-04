@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom"
 import { Home, PlusCircle, BookOpen, QrCode, Menu, X } from "lucide-react"
 import { useState } from "react"
 import ShelfImportModal from "./ShelfImportModal"
+import Logo from "./Logo"
+import SimpleLogo from "./SimpleLogo"
 
 export default function Navbar() {
   const [isImportModalOpen, setIsImportModalOpen] = useState(false)
@@ -19,7 +21,7 @@ export default function Navbar() {
   const isActive = (path) => location.pathname === path
 
   return (
-    <nav className="glass sticky top-0 z-50 border-b border-white/20 backdrop-blur-xl">
+    <nav className="glass sticky top-0 z-50 border-b border-white/20">
       <div className="container-wide">
         <div className="flex items-center justify-between h-16 px-4">
           {/* Logo */}
@@ -27,8 +29,8 @@ export default function Navbar() {
             to="/" 
             className="flex items-center space-x-2 group"
           >
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl flex items-center justify-center shadow-glow-primary group-hover:shadow-glow-primary/80 transition-all duration-300">
-              <BookOpen className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <SimpleLogo size={32} />
             </div>
             <span className="text-xl font-heading font-bold text-gradient-primary group-hover:scale-105 transition-transform duration-200">
               QuillCache
@@ -36,7 +38,7 @@ export default function Navbar() {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => {
               const Icon = item.icon
               return (
@@ -70,7 +72,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-xl text-neutral-700 hover:bg-neutral-100 transition-colors duration-200"
+            className="lg:hidden p-2 rounded-xl text-neutral-700 hover:bg-neutral-100 transition-colors duration-200"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (
@@ -83,7 +85,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-white/20 bg-white/95 backdrop-blur-xl">
+          <div className="lg:hidden border-t border-white/20 bg-white/95">
             <div className="px-4 py-4 space-y-2">
               {navItems.map((item) => {
                 const Icon = item.icon

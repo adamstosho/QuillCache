@@ -187,15 +187,21 @@
 @layer components {
   /* Glass Morphism Effects */
   .glass {
-    @apply backdrop-blur-md bg-white/70 border border-white/20 shadow-xl;
+    @apply bg-white/70 border border-white/20 shadow-xl;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
   }
 
   .glass-dark {
-    @apply backdrop-blur-md bg-neutral-900/70 border border-neutral-700/20 shadow-xl;
+    @apply bg-neutral-900/70 border border-neutral-700/20 shadow-xl;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
   }
 
   .glass-primary {
-    @apply backdrop-blur-md bg-primary-500/10 border border-primary-200/20 shadow-xl;
+    @apply bg-primary-500/10 border border-primary-200/20 shadow-xl;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
   }
 
   /* Card Components */
@@ -262,7 +268,10 @@
 
   /* Input System */
   .input {
-    @apply w-full px-4 py-3 border border-neutral-200 rounded-xl bg-white/50 backdrop-blur-sm focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all duration-200 placeholder:text-neutral-400;
+    @apply w-full px-4 py-3 border border-neutral-200 rounded-xl bg-white/50 placeholder:text-neutral-400;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    @apply focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all duration-200;
   }
 
   .input-error {
@@ -422,6 +431,37 @@
   .grid-auto-fill {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
+
+  /* Responsive Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Line Clamp Utilities */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
 }
 
 @layer utilities {
@@ -538,41 +578,40 @@
     animation: pulse-glow 2s ease-in-out infinite;
   }
 
+  /* Backdrop Blur Utilities with Webkit Support */
   .backdrop-blur-xs {
+    -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
   }
 
   .backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
   }
 
   .backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
   }
 
   .backdrop-blur-lg {
+    -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
   }
 
   .backdrop-blur-xl {
+    -webkit-backdrop-filter: blur(24px);
     backdrop-filter: blur(24px);
   }
 
   .backdrop-blur-2xl {
+    -webkit-backdrop-filter: blur(40px);
     backdrop-filter: blur(40px);
   }
 
   .backdrop-blur-3xl {
+    -webkit-backdrop-filter: blur(64px);
     backdrop-filter: blur(64px);
-  }
-
-  /* Responsive Utilities */
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .text-pretty {
-    text-wrap: pretty;
   }
 
   /* Custom Line Heights */

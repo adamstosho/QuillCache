@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar"
 import HomePage from "./pages/HomePage"
 import AddBookPage from "./pages/AddBookPage"
 import MyShelfPage from "./pages/MyShelfPage"
+import LogoDemo from "./components/LogoDemo"
+import SimpleLogoTest from "./components/SimpleLogoTest"
 import { useIndexedDB } from "./hooks/useIndexedDB" // Import the hook
 
 export default function App() {
@@ -19,6 +21,8 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/add-book" element={<AddBookPage />} />
           <Route path="/my-shelf" element={<MyShelfPage />} />
+          <Route path="/logo-demo" element={<LogoDemo />} />
+          <Route path="/logo-test" element={<SimpleLogoTest />} />
         </Routes>
       </main>
     </div>
