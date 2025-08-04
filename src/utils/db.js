@@ -56,7 +56,6 @@ export async function addBook(bookData) {
 export async function getAllBooks() {
   const db = await initDB()
   const books = await db.getAll(STORE_NAME)
-  console.log("All books retrieved:", books)
   return books
 }
 

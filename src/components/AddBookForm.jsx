@@ -1,9 +1,7 @@
-"use client"
-
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useIndexedDB } from "../hooks/useIndexedDB"
-import { BookOpen, User, FileText, Calendar, ArrowLeft, Plus, Sparkles } from "lucide-react"
+import { BookOpen, User, FileText, Calendar, ArrowLeft, Plus } from "lucide-react"
 import toast from "react-hot-toast"
 
 export default function AddBookForm() {
@@ -50,67 +48,59 @@ export default function AddBookForm() {
   }
 
   return (
-    <div className="container-narrow px-4">
-      <div className="glass rounded-2xl lg:rounded-3xl p-6 lg:p-8 slide-up">
+    <div className="max-w-2xl mx-auto p-6">
+      <div className="bg-white rounded-lg shadow-lg p-8">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-6 lg:mb-8 space-y-4 lg:space-y-0">
-          <div className="space-y-2">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center shadow-glow-primary">
-                <BookOpen className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl lg:text-3xl font-heading font-bold text-gradient-primary">Add New Book</h1>
-                <p className="text-neutral-600 text-sm lg:text-base">Fill in the details to add a book to your shelf</p>
-              </div>
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
+              <BookOpen className="w-6 h-6 text-white" />
             </div>
           </div>
-          <div className="hidden lg:flex items-center space-x-2 text-sm">
-            <Sparkles className="w-4 h-4 text-secondary-500" />
-            <span className="text-neutral-500">Create your library</span>
-          </div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Add New Book</h1>
+          <p className="text-gray-600">Fill in the details to add a book to your shelf</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6 lg:space-y-8">
-          {/* Title */}
-          <div className="space-y-2 lg:space-y-3">
-            <label htmlFor="title" className="flex items-center text-sm font-semibold text-neutral-700">
-              <BookOpen className="w-4 h-4 mr-2 text-primary-600" />
-              Title <span className="text-error-600 ml-1">*</span>
-            </label>
-            <input
-              type="text"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="input"
-              placeholder="Enter book title"
-              required
-            />
-          </div>
-
-          {/* Author */}
-          <div className="space-y-2 lg:space-y-3">
-            <label htmlFor="author" className="flex items-center text-sm font-semibold text-neutral-700">
-              <User className="w-4 h-4 mr-2 text-accent-600" />
-              Author <span className="text-error-600 ml-1">*</span>
-            </label>
-            <input
-              type="text"
-              id="author"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              className="input"
-              placeholder="Enter author name"
-              required
-            />
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Title and Author Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+                <BookOpen className="w-4 h-4 inline mr-2 text-purple-600" />
+                Title <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Enter book title"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="author" className="block text-sm font-medium text-gray-700 mb-2">
+                <User className="w-4 h-4 inline mr-2 text-blue-600" />
+                Author <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="author"
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter author name"
+                required
+              />
+            </div>
           </div>
 
           {/* Genre and Year Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="space-y-2 lg:space-y-3">
-              <label htmlFor="genre" className="flex items-center text-sm font-semibold text-neutral-700">
-                <FileText className="w-4 h-4 mr-2 text-secondary-600" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="genre" className="block text-sm font-medium text-gray-700 mb-2">
+                <FileText className="w-4 h-4 inline mr-2 text-orange-600" />
                 Genre
               </label>
               <input
@@ -118,13 +108,13 @@ export default function AddBookForm() {
                 id="genre"
                 value={genre}
                 onChange={(e) => setGenre(e.target.value)}
-                className="input"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 placeholder="e.g., Fiction, Science, History"
               />
             </div>
-            <div className="space-y-2 lg:space-y-3">
-              <label htmlFor="publishedYear" className="flex items-center text-sm font-semibold text-neutral-700">
-                <Calendar className="w-4 h-4 mr-2 text-neutral-500" />
+            <div>
+              <label htmlFor="publishedYear" className="block text-sm font-medium text-gray-700 mb-2">
+                <Calendar className="w-4 h-4 inline mr-2 text-gray-500" />
                 Published Year
               </label>
               <input
@@ -132,7 +122,7 @@ export default function AddBookForm() {
                 id="publishedYear"
                 value={publishedYear}
                 onChange={(e) => setPublishedYear(e.target.value)}
-                className="input"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
                 placeholder="e.g., 2023"
                 min="1800"
                 max={new Date().getFullYear() + 1}
@@ -141,9 +131,9 @@ export default function AddBookForm() {
           </div>
 
           {/* Description */}
-          <div className="space-y-2 lg:space-y-3">
-            <label htmlFor="description" className="flex items-center text-sm font-semibold text-neutral-700">
-              <FileText className="w-4 h-4 mr-2 text-accent-600" />
+          <div>
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+              <FileText className="w-4 h-4 inline mr-2 text-blue-600" />
               Description
             </label>
             <textarea
@@ -151,64 +141,64 @@ export default function AddBookForm() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows="4"
-              className="input resize-none"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
               placeholder="Brief description of the book..."
             />
           </div>
 
-          {/* Status */}
-          <div className="space-y-2 lg:space-y-3">
-            <label htmlFor="status" className="flex items-center text-sm font-semibold text-neutral-700">
-              <BookOpen className="w-4 h-4 mr-2 text-secondary-600" />
-              Status
-            </label>
-            <select
-              id="status"
-              value={status}
-              onChange={(e) => {
-                setStatus(e.target.value)
-                if (e.target.value === "available") {
-                  setBorrowedBy("")
-                }
-              }}
-              className="input"
-            >
-              <option value="available">Available</option>
-              <option value="borrowed">Borrowed</option>
-            </select>
+          {/* Status and Borrowed By Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-2">
+                <BookOpen className="w-4 h-4 inline mr-2 text-orange-600" />
+                Status
+              </label>
+              <select
+                id="status"
+                value={status}
+                onChange={(e) => {
+                  setStatus(e.target.value)
+                  if (e.target.value === "available") {
+                    setBorrowedBy("")
+                  }
+                }}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              >
+                <option value="available">Available</option>
+                <option value="borrowed">Borrowed</option>
+              </select>
+            </div>
+            {status === "borrowed" && (
+              <div>
+                <label htmlFor="borrowedBy" className="block text-sm font-medium text-gray-700 mb-2">
+                  <User className="w-4 h-4 inline mr-2 text-orange-600" />
+                  Borrowed By
+                </label>
+                <input
+                  type="text"
+                  id="borrowedBy"
+                  value={borrowedBy}
+                  onChange={(e) => setBorrowedBy(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  placeholder="Name of the person who borrowed the book"
+                />
+              </div>
+            )}
           </div>
 
-          {/* Borrowed By */}
-          {status === "borrowed" && (
-            <div className="space-y-2 lg:space-y-3 slide-up">
-              <label htmlFor="borrowedBy" className="flex items-center text-sm font-semibold text-neutral-700">
-                <User className="w-4 h-4 mr-2 text-secondary-600" />
-                Borrowed By
-              </label>
-              <input
-                type="text"
-                id="borrowedBy"
-                value={borrowedBy}
-                onChange={(e) => setBorrowedBy(e.target.value)}
-                className="input"
-                placeholder="Name of the person who borrowed the book"
-              />
-            </div>
-          )}
-
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4 lg:pt-6">
+          <div className="flex flex-col sm:flex-row gap-4 pt-6">
             <button
               type="button"
               onClick={() => navigate("/my-shelf")}
-              className="btn-outline btn-md lg:btn-lg flex items-center justify-center"
+              className="flex items-center justify-center px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Cancel
             </button>
             <button
               type="submit"
-              className="btn-primary btn-md lg:btn-lg flex items-center justify-center flex-1"
+              className="flex items-center justify-center px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 flex-1"
             >
               <Plus className="w-4 h-4 mr-2" />
               Add Book

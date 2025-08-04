@@ -1,4 +1,3 @@
-"use client"
 import { QRCodeSVG } from "qrcode.react"
 import { X } from "lucide-react"
 import { useIndexedDB } from "../hooks/useIndexedDB"
@@ -6,10 +5,10 @@ import { encodeBooksToQR } from "../utils/helpers"
 import toast from "react-hot-toast"
 
 export default function QRModal({ isOpen, onClose }) {
+  if (!isOpen) return null
+
   const { books } = useIndexedDB()
   const qrData = encodeBooksToQR(books)
-
-  if (!isOpen) return null
 
   const handleCopy = () => {
     navigator.clipboard.writeText(qrData)

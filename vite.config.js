@@ -6,7 +6,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    open: true
+    host: '127.0.0.1',
+    open: true,
+    historyApiFallback: true,
+    hmr: {
+      port: 3000,
+      host: '127.0.0.1'
+    }
   },
   build: {
     outDir: 'dist',

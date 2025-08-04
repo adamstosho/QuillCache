@@ -20,7 +20,7 @@ A beautiful, offline-first Progressive Web App for managing your personal book c
 - **UI Components**: Radix UI + Custom components
 - **Icons**: Lucide React
 - **Forms**: React Hook Form + Zod validation
-- **QR Codes**: html5-qrcode + qrcode.react
+- **QR Codes**: qrcode.react for sharing
 
 ## Getting Started
 

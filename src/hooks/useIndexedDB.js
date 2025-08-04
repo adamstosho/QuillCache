@@ -1,6 +1,4 @@
-"use client"
-
-import { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import { initDB, getAllBooks, addBook, updateBook, deleteBook, clearAllBooks } from "../utils/db"
 import toast from "react-hot-toast"
 
