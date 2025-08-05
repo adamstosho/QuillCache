@@ -3,13 +3,22 @@ import ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
 import { Toaster } from "react-hot-toast"
 import App from "./App.jsx"
+import ErrorBoundary from "./components/ErrorBoundary.jsx"
 import "./index.css"
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-      <Toaster position="top-center" /> {/* Global toast notifications */}
-    </BrowserRouter>
-  </React.StrictMode>,
-)
+const root = document.getElementById("root")
+
+if (root) {
+  ReactDOM.createRoot(root).render(
+    <React.StrictMode>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <App />
+          <Toaster position="top-center" /> {/* Global toast notifications */}
+        </BrowserRouter>
+      </ErrorBoundary>
+    </React.StrictMode>,
+  )
+} else {
+  console.error("Root element not found")
+}

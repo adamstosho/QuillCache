@@ -20,6 +20,11 @@ self.addEventListener("install", (event) => {
 })
 
 self.addEventListener("fetch", (event) => {
+  // Skip service worker for navigation requests to ensure proper routing
+  if (event.request.mode === 'navigate') {
+    return
+  }
+  
   event.respondWith(
     caches.match(event.request).then((response) => {
       // Cache hit - return response

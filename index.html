@@ -36,6 +36,15 @@
             });
         });
       }
+      
+      // Add error handling for the app
+      window.addEventListener('error', (event) => {
+        console.error('Global error:', event.error);
+      });
+      
+      window.addEventListener('unhandledrejection', (event) => {
+        console.error('Unhandled promise rejection:', event.reason);
+      });
     </script>
   </body>
 </html>
